@@ -1,0 +1,40 @@
+use ecommerceDB;
+
+db.products.insertMany([
+  {
+    productId: "PROD101",
+    title: "wireless Noise-canceling headphones",
+    category: "Electronics",
+    price: 199.99,
+    stockQuantity: 45,
+    ratings: 4.7,
+    attributes: {
+      brand: "Audiotech",
+      color: "Black",
+      batteryLife: "30 hours"
+    }
+  },
+  {
+    productId: "PROD102",
+    title: "Running Shoes",
+    category: "Footwear",
+    price: 89.50,
+    stockQuantity: 120,
+    ratings: 4.4,
+    attributes: {
+      brand: "runfast",
+      sizesAvailable:,
+      material: "Mesh"
+    }
+  }
+]);
+
+db.products.find({
+  category: "Electronics",
+  price: { $lte: 200 }
+}).pretty();
+
+db.products.updateOne(
+  { productId: "PROD101" },
+  { $inc: { stockQuantity: -1 } }
+);
